@@ -43,7 +43,6 @@ public class Exercise2Test {
          */
          map.putIfAbsent("Alice", 32);
          map.putIfAbsent("Joe", 32);
-
         assertThat(map.get("Alice"), is(32));
         assertThat(map.get("Joe"), is(22));
         
@@ -74,13 +73,18 @@ public class Exercise2Test {
         /**
          * Try to increment the value for keys "Joe", "Steven" and "Alice" using {@link Map#computeIfPresent}.
          */
+
         BiFunction<String, Integer, Integer> remappingFunction = (key,oldVal) -> ++oldVal ;
         map.computeIfPresent("Joe", remappingFunction);
         map.computeIfPresent("Steven", remappingFunction);
         map.computeIfPresent("Alice", remappingFunction);
 
+        
+        
+
         assertThat(map.get("Joe"), is(23));
         assertThat(map.get("Steven"), is(28));
+        assertThat(map.get("Patrick"), is(28));
         assertThat(map, not(hasKey("Alice")));
     }
 }
